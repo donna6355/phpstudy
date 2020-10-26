@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX 탭메뉴 구현</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    #wrap {
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    header>h1 {
+      height: 100px;
+      line-height: 100px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    section>ul {
+      *zoom: 1
+    }
+
+    section>ul:after {
+      display: block;
+      clear: both;
+      content: ''
+    }
+
+    section>ul>li {
+      float: left;
+      width: 199px;
+      height: 50px;
+      background-color: #f9f9f9;
+      border: 1px solid #dedede;
+      border-left: 0;
+    }
+
+    section>ul>li:first-child {
+      width: 198px;
+      border-left: 1px solid #dedede;
+    }
+
+    section>ul>li.on {
+      background-color: #FF0;
+    }
+
+    section>ul>li>a {
+      display: block;
+      height: 50px;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 50px;
+      text-align: center;
+    }
+
+    section>.cont {
+      width: 598px;
+      height: 200px;
+      text-align: center;
+      border: 1px solid #dedede;
+    }
+
+    h2 {
+      margin: 20px 0;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      width: 150px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      border: 1px solid black;
+    }
+  </style>
+  <script src="../js/jquery-1.12.4.min.js"></script>
+  <script>
+    $(function () {
+      $('.cont').load('sub/con1.html');
+      $('a').on('click', function (evt) {
+        evt.preventDefault();
+        $(this).parent().addClass('on').siblings().removeClass('on');
+        const target = $(this).attr('href');
+        $('.cont').load(target);
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div id="wrap">
+    <header>
+      <h1>AJAX 탭메뉴 구현</h1>
+    </header>
+    <section>
+      <ul>
+        <li class="on"><a href="./sub/con1.html">웹표준</a></li>
+        <li><a href="./sub/con2.html">CSS</a></li>
+        <li><a href="./sub/con3.html">제이쿼리</a></li>
+      </ul>
+      <div class="cont">출력내용</div>
+    </section>
+  </div>
+</body>
+
+</html>

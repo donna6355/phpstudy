@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>서버로부터 데이터 받아보기</title>
+  <script src="../js/jquery-1.12.4.min.js"></script>
+  <script>
+    $(function () {
+      $.ajax({
+        url: './05-jsondata.php',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+          console.log(data)
+          data = data.item;
+          if (data.length > 0) {
+            const $tb = $("<table />");
+            for (let key in data) {
+              const id = data[key].id;
+              const first_name = data[key].first_name;
+              const last_name = data[key].last_name;
+              const email = data[key].email;
+              const gender = data[key].gender;
+
+              const row = $("<tr />").append(
+                $("<td />").text(id),
+                $("<td />").text(first_name),
+                $("<td />").text(last_name),
+                $("<td />").text(email),
+                $("<td />").text(gender)
+              );
+
+              $tb.append(row);
+            }
+            $(".container").append($tb);
+          }
+        }
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div id="wrap">
+    <h1>회원정보 AJAX 비동기 처리</h1>
+    <div class="container">
+
+    </div>
+  </div>
+</body>
+
+</html>

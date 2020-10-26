@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	
+	<title>파일 분기</title>
+	<script>
+		//아래 코드를 이해하기위한 연습
+		let str = "The quick brown Fox jumps over fox the lazy Dog"
+		str = str.toLowerCase();
+		console.log(str); //소문자로 변경함.
+
+		//특정 단어(fox)의 첫번째 시작 위치 찾기
+		//없으면 -1을 return
+		const loc = str.indexOf('fox');
+		console.log(loc)
+	</script>
+	<script>
+
+		console.log(window);
+		console.log(navigator);
+		console.log(navigator.userAgent);
+		console.log(navigator.userAgent.toLowerCase());
+
+		//접속자의 브라우저 정보를 소문자로 가져옴
+		const uAgent = navigator.userAgent.toLowerCase();
+		console.log(uAgent.indexOf('chrome'));
+		
+		//모바일 접속장치 종류를 배열로 정의한 후 uAgent 값에 일치하는 것이 있으면 모바일 환경이라는 뜻
+		const mobileList = ['iphone','ipod','android','blackberry','windows ce','nokia','webos','opera mini','sonyericsson','opera mobi','iemobile','avantgo','bada','blazer','compal','iemobile','iris','lge','windows phone'];
+
+		//브라우저 정보 대조작업 : 모바일 리스트와
+		let userDevice = 'pc';
+		for(let i = 0 ; i < mobileList.length ; i++){
+			if(uAgent.indexOf(mobileList[i]) !== -1){
+				userDevice = 'mobile'
+			}
+		}
+		// console.log(userDevice);
+		// alert(userDevice);
+
+		/*
+			웹 페이지를 강제로 이동시키는 방법
+				1. window.location = 'URL입력';
+				2. document.location = 'URL입력';
+				3. location.href = 'URL입력';
+		*/
+
+		//유저 디바이스가 모바일이면 모바일 페이지, pc면 pc페이지로 자동 이동 : 접속 분기
+		if(userDevice == 'mobile'){
+			document.location = "line-mobile.html";
+		}else{
+			window.location = "line-pc.html";
+		}
+	</script>
+</head>
+<body>
+	<h1 class="text-center">적응형</h1>	
+</body>
+</html>
